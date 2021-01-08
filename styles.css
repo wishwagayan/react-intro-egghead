@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+.box {
+    display: flex;
+    color: aliceblue;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.box--small {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+}
+
+.box--medium {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    justify-content: center;
+    align-items: center;
+}
+
+.box--large {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    color: aliceblue;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+}
