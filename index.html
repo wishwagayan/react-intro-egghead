@@ -18,21 +18,16 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-        const Message = props =>{
-        return (
-            <div className="container-msg">
-                {props.msg}    
-            </div>
-        ); 
-        };
 
-        const element = (
-            <div className="container">
-                <Message msg='hello world'/>
-                <Message msg='Nothing'></Message>
-            </div>
-        );
+    function tick(){
+        const time = new Date().toLocaleTimeString();
+        const element = (<div>
+            <input value={time}></input>
+            </div>);
         ReactDOM.render(element, document.getElementById('root'));
+    };
+    tick();
+    setInterval(tick,1000);
     </script>
 </body>
 
