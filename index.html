@@ -11,9 +11,6 @@
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
 
-    <!-- loading the js file -->
-    <!-- <script src="./src/script1.js"></script> -->
-    <!-- <script src="./src/script2.js"></script> -->
 </head>
 
 <body>
@@ -21,17 +18,20 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-        const rootElement = document.getElementById('root');
-        // const HelloElement = React.createElement('span',null,'Hello');
-        // const WorldElement = React.createElement('span',null,'World');
-        // const element= React.createElement(React.Fragment,null,HelloElement,WorldElement);
+        const Message = ({msg})=>{
+        return (
+            <div className="container-msg">
+                {msg}    
+            </div>
+        ); 
+        };
 
         const element = (
-            <>
-                <span>Hello </span> <span>World </span>
-            </>
-            );
-        ReactDOM.render(element, rootElement);
+            <div className="container">
+                <Message msg='hello world'/>
+            </div>
+        );
+        ReactDOM.render(element, document.getElementById('root'));
     </script>
 </body>
 
