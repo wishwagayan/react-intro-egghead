@@ -22,23 +22,15 @@
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
         const rootElement = document.getElementById('root');
+        // const HelloElement = React.createElement('span',null,'Hello');
+        // const WorldElement = React.createElement('span',null,'World');
+        // const element= React.createElement(React.Fragment,null,HelloElement,WorldElement);
 
-        // with out babel
-        /*const element = React.createElement(
-            'div', {
-                className : 'container',
-                children : 'hello world'
-            }
-        );*/
-
-        // with Babbel JSX
-        const children = 'hello world by childern';
-        const className = 'container-c1';
-        const MyclassName = 'container-c2';
-        const props  = {className,children};
-
-        //jsx notaion ...props which is transpiltion spread out the own enumerable propeties
-        const element = <div {...props} className={MyclassName} />
+        const element = (
+            <>
+                <span>Hello </span> <span>World </span>
+            </>
+            );
         ReactDOM.render(element, rootElement);
     </script>
 </body>
