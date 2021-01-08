@@ -34,7 +34,8 @@
         // with Babbel JSX
         const children = 'hello world by childern';
         const className = 'container-c1';
-        const element = <div className={className}>{children}</div>;
+        const props  = {className,children};
+        const element = <div {...props}/>
         ReactDOM.render(element, rootElement);
     </script>
 </body>
