@@ -19,6 +19,7 @@
     <div id="root">Not rendered</div>
     <script type="text/babel">
         const rootElement = document.getElementById('root');
+        
         // with out babel
         /*const element = React.createElement(
             'div', {
@@ -26,6 +27,7 @@
                 children : 'hello world'
             }
         );*/
+
         // with Babbel JSX
         const element = <div className="container"> Hello world </div>;
         ReactDOM.render(element, rootElement);
