@@ -19,8 +19,13 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-        const element = (
+        const boxComponent = (props)=>{ return (
+        <div className={`box ${props.className}`} style={props.bgcolor}>
+            {props.content}
+        </div>
+        ); } ; const element = (
         <div className='box'>
+            <boxComponent className='box--large' style={{backgroundColor: 'gray'}} content='helloworld' content="value"></boxComponent>
             <div className=" box--small">
                 small box
             </div>
