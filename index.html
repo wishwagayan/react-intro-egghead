@@ -17,19 +17,18 @@
 
 <body>
     <div id="root">Not rendered</div>
-    <script type="text/javascript">
+    <script type="text/babel">
         const rootElement = document.getElementById('root');
-        const element = document.createElement('div');
-
-        // clearing up the inner text insider of the div
-        rootElement.textContent = '';
-
-        //setting up the inner text of the child elemnt
-        element.textContent = 'hello world';
-        element.className = 'container';
-
-        // renderint to the root element
-        rootElement.appendChild(element);
+        // with out babel
+        /*const element = React.createElement(
+            'div', {
+                className : 'container',
+                children : 'hello world'
+            }
+        );*/
+        // with Babbel JSX
+        const element = <div className="container"> Hello world </div>;
+        ReactDOM.render(element, rootElement);
     </script>
 </body>
 
