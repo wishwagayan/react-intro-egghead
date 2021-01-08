@@ -6,4 +6,7 @@ const element = () => {
     );
 }
 
-export default element;
+ReactDOM.render (
+    <element/>,
+    document.getElementById("root")
+);
