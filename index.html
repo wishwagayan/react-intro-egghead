@@ -18,6 +18,8 @@
 
 <body>
     <div id="root">Not rendered</div>
+
+    <!-- hear we changed type to text/babel -->
     <script type="text/babel">
         const rootElement = document.getElementById('root');
 
@@ -30,7 +32,8 @@
         );*/
 
         // with Babbel JSX
-        const element = <div className="container"> Hello world </div>;
+        const children = 'hello world by childern';
+        const element = <div className="container">{children}</div>;
         ReactDOM.render(element, rootElement);
     </script>
 </body>
