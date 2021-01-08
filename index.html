@@ -34,8 +34,11 @@
         // with Babbel JSX
         const children = 'hello world by childern';
         const className = 'container-c1';
+        const MyclassName = 'container-c2';
         const props  = {className,children};
-        const element = <div {...props}/>
+
+        //jsx notaion ...props which is transpiltion spread out the own enumerable propeties
+        const element = <div {...props} className={MyclassName} />
         ReactDOM.render(element, rootElement);
     </script>
 </body>
