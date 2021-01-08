@@ -18,10 +18,10 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-        const Message = ({msg})=>{
+        const Message = props =>{
         return (
             <div className="container-msg">
-                {msg}    
+                {props.msg}    
             </div>
         ); 
         };
@@ -29,6 +29,7 @@
         const element = (
             <div className="container">
                 <Message msg='hello world'/>
+                <Message msg='Nothing'></Message>
             </div>
         );
         ReactDOM.render(element, document.getElementById('root'));
