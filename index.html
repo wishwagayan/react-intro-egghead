@@ -1,44 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EGG HEAD REACT INTRO</title>
 
     <!-- adding react , react dom  -->
     <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div id="root">Not rendered</div>
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-        const boxComponent = (props)=>{ return (
-        <div className={`box ${props.className}`} style={props.bgcolor}>
-            {props.content}
-        </div>
-        ); } ; const element = (
-        <div className='box'>
-            <boxComponent className='box--large' style={{backgroundColor: 'gray'}} content='helloworld' content="value"></boxComponent>
-            <div className=" box--small">
-                small box
-            </div>
-            <div className=" box--medium">
-                small box
-            </div>
-            <div className=" box--large">
-                small box
-            </div>
-        </div>
-
-        ); ReactDOM.render(element,document.getElementById('root'));
+      function Greeting() {
+        const [name, setName] = React.useState("");
+        const handleChange = (event) => setName(event.target.value);
+        return (
+          <div>
+            <form>
+              {/* htmlFor is the same thing as For attribute in HTML */}
+              <label htmlFor="name">Name: </label>
+              <input onChange={handleChange} id="name" />
+            </form>
+            {name ? <strong>Hello {name}</strong> : "Please type your name"}
+          </div>
+        );
+      }
+      ReactDOM.render(<Greeting />, document.getElementById("root"));
     </script>
-</body>
-
+  </body>
 </html>
