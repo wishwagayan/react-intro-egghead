@@ -25,17 +25,19 @@
 
       function App() {
         const [state, setState] = React.useState("");
+        const [state2, setState2] = React.useState("");
 
         const handelChange = (event) => {
           setState(event.target.value);
+        };
+        const handelChange2 = (event) => {
+          setState2(event.target.value);
         };
         return (
           <div>
             <form>
               {" "}
-              <label htmlFor="input-text" onChange={handelChange}>
-                Type Here
-              </label>
+              <label htmlFor="input-text">Type Here</label>
               <input
                 type="text"
                 name="input-text"
@@ -44,6 +46,17 @@
               <button name="button">Reset</button>
             </form>
             <p>you are typed : {state}</p>
+            <form>
+              {" "}
+              <label htmlFor="input-text">Type Here</label>
+              <input
+                type="text"
+                name="input-text"
+                onChange={handelChange2}
+              ></input>
+              <button name="button">Reset</button>
+            </form>
+            <p>you are typed : {state2}</p>
           </div>
         );
       }
