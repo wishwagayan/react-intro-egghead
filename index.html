@@ -17,48 +17,28 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-      const rootElement = document.getElementById("root");
-      // const state = {
-      //   eventCount: 0,
-      //   userName: "",
-      // };
-      function localStrageFunction(key, defaultValue = "") {
-        const [state, setState] = React.useState(
-          () => window.localStorage.getItem("name") || defaultValue
-        );
-
-        React.useEffect(() => {
-          console.log("use effect rendered");
-          window.localStorage.setItem(key, state);
-        }, [state]);
-
-        return [state, setState];
-      }
-
-      function App() {
-        const [name, setName] = localStrageFunction("name", "");
-        const handelChange = (event) => {
-          setName(event.target.value);
+      const App = () => {
+        const handleSubmit = (event) => {
+          event.preventDefault();
+          return alert(
+            event.target.elements.userNameInput.value +
+              " " +
+              event.target.elements.passwordInput.value
+          );
         };
-
         return (
           <div>
-            <form>
-              {" "}
-              <label htmlFor="input-text">Type Here</label>
-              <input
-                type="text"
-                name="input-text"
-                onChange={handelChange}
-                value={name}
-              ></input>
-              <button name="button">Reset</button>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="userNameInput">User Name : </label>
+              <input type="text" id="userNameInput"></input>
+              <br />
+              <label htmlFor="passwordInput">Enter Password : </label>
+              <input type="password" id="passwordInput" />
+              <button type="Submit">Submit</button>
             </form>
-            <p>you are typed : {name}</p>
           </div>
         );
-      }
-
+      };
       function renderApp() {
         ReactDOM.render(<App />, document.getElementById("root"));
       }
