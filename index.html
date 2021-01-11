@@ -18,40 +18,26 @@
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
       const rootElement = document.getElementById("root");
-      const state = { eventCount: 0, username: "" };
+      // const state = {
+      //   eventCount: 0,
+      //   userName: "",
+      // };
 
       function App() {
-        function handleClick() {
-          setState({ eventCount: state.eventCount + 1 });
-        }
+        const [state, setState] = React.useState({ eventCount: 0 });
 
-        function handleChange(event) {
-          // Getting current value from the input
-          console.log(event);
-          // Getting the SyntheticEvent
-          console.log(event.nativeEvent);
-          // Getting the nativeEvent if needed
-          setState({ username: event.target.value });
+        function handleClick(event) {
+          setState({ eventCount: state.eventCount + 2 });
         }
-
         return (
           <div>
-            <p>There have been {state.eventCount} events.</p>
-            <p>
-              {/* We can have different types of events here that are supported by React: https://reactarmory.com/guides/react-events-cheatsheet */}
-              <button onClick={handleClick}>Click Me</button>
-            </p>
-            <p>You typed: {state.username}</p>
-            <p>
-              <input onChange={handleChange} />
-            </p>
+            <label htmlFor="button"> Click Button</label>
+            <p>button clicked {state.eventCount}</p>
+            <button name="button" onClick={handleClick}>
+              click
+            </button>
           </div>
         );
-      }
-
-      function setState(newState) {
-        Object.assign(state, newState);
-        renderApp();
       }
 
       function renderApp() {
