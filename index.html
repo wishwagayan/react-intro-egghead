@@ -19,50 +19,50 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-      const ErrorBoundary = ReactErrorBoundary.ErrorBoundary;
-      // class ErrorBoundary extends React.Component {
-      //   state = { error: null };
-      //   static getDerivedStateFromError(error) {
-      //     return { error };
-      //   }
-      //   render() {
-      //     const { error } = this.state;
-      //     if (error) {
-      //       return <this.props.FallbackComponent error={error} />;
-      //     }
-
-      //     return this.props.children;
-      //   }
-      // }
-
-      function ErrorFallback(error) {
-        return (
-          <div>
-            <p>Something went wrong:</p>
-            <pre>{error.message}</pre>
-          </div>
-        );
-      }
-
-      function Bomb() {
-        throw new Error("💥 CABOOM 💥");
-      }
+      const allItems = [
+        { id: "a", value: "apple" },
+        { id: "o", value: "orange" },
+        { id: "g", value: "grape" },
+        { id: "p", value: "pear" },
+      ];
 
       function App() {
-        const [explode, setExplode] = React.useState(false);
+        const [items, setItems] = React.useState(allItems);
+
+        function addItem() {
+          setItems([...items, allItems.find((i) => !items.includes(i))]);
+        }
+
+        function removeItem(item) {
+          setItems(items.filter((i) => i !== item));
+        }
+
         return (
           <div>
-            <div>
-              <button onClick={() => setExplode(true)}>💣</button>
-            </div>
-            <div>
-              <ErrorBoundary FallbackComponent={ErrorFallback}>
-                {explode ? <Bomb /> : "Push the button Max!"}
-              </ErrorBoundary>
-            </div>
+            <button
+              disabled={items.length >= allItems.length}
+              onClick={addItem}
+            >
+              add item
+            </button>
+            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+              {items.map((item) => (
+                // each iteam needs to have a key prop
+                // We’re using inputs in this example
+                // but the same thing can happen for your own components that maintain state.
+                <li key={item.id}>
+                  <button onClick={() => removeItem(item)}>remove</button>{" "}
+                  <label htmlFor={`${item.value}-input`}>{item.value}</label>{" "}
+                  <input id={`${item.value}-input`} defaultValue={item.value} />
+                </li>
+                // The best way to pick a key is to use a string that uniquely
+                // identifies a list item among its siblings
+              ))}
+            </ul>
           </div>
         );
       }
+
       function renderApp() {
         ReactDOM.render(<App />, document.getElementById("root"));
       }
