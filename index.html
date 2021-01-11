@@ -19,50 +19,45 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-      const allItems = [
-        { id: "a", value: "apple" },
-        { id: "o", value: "orange" },
-        { id: "g", value: "grape" },
-        { id: "p", value: "pear" },
-      ];
-
-      function App() {
-        const [items, setItems] = React.useState(allItems);
-
-        function addItem() {
-          setItems([...items, allItems.find((i) => !items.includes(i))]);
-        }
-
-        function removeItem(item) {
-          setItems(items.filter((i) => i !== item));
-        }
-
+      function Name({ name, onNameChange }) {
         return (
           <div>
-            <button
-              disabled={items.length >= allItems.length}
-              onClick={addItem}
-            >
-              add item
-            </button>
-            <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-              {items.map((item) => (
-                // each iteam needs to have a key prop
-                // We’re using inputs in this example
-                // but the same thing can happen for your own components that maintain state.
-                <li key={item.id}>
-                  <button onClick={() => removeItem(item)}>remove</button>{" "}
-                  <label htmlFor={`${item.value}-input`}>{item.value}</label>{" "}
-                  <input id={`${item.value}-input`} defaultValue={item.value} />
-                </li>
-                // The best way to pick a key is to use a string that uniquely
-                // identifies a list item among its siblings
-              ))}
-            </ul>
+            <label>Name: </label>
+            <input value={name} onChange={onNameChange} />
           </div>
         );
       }
 
+      function FavoriteAnimal(animal, onChangeAnimal) {
+        return (
+          <div>
+            <label>Favorite Animal: </label>
+            <input value={animal} onChange={onChangeAnimal} />
+          </div>
+        );
+      }
+
+      function Display({ name, animal }) {
+        return <div>{`Hey ${name}, you favorite animals is ${animal}`}</div>;
+      }
+
+      function App() {
+        const [name, setName] = React.useState("");
+        const [animal, setAnimal] = React.useState("");
+        return (
+          <form>
+            <Name
+              name={name}
+              onNameChange={(event) => setName(event.target.value)}
+            />
+            <FavoriteAnimal
+              animal={animal}
+              onChangeAnimal={(event) => setAnimal(event.target.value)}
+            />
+            <Display name={name} animal={animal} />
+          </form>
+        );
+      }
       function renderApp() {
         ReactDOM.render(<App />, document.getElementById("root"));
       }
