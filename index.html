@@ -27,7 +27,7 @@
           : "User name must be in lower cases";
 
         function handleChange(event) {
-          setUserName(event.target.value);
+          setUserName(event.target.value.toLowerCase());
         }
         const handleSubmit = (event) => {
           event.preventDefault();
@@ -45,12 +45,12 @@
                 type="text"
                 id="userNameInput"
                 onChange={handleChange}
+                value={userName}
               ></input>
               <br />
               <label htmlFor="passwordInput">Enter Password : </label>
               <input type="password" id="passwordInput" />
-              <div style={{ color: "red" }}>{errorMsg}</div>
-              {/* disable button boolean */}
+
               <button type="Submit">Submit</button>
             </form>
           </div>
