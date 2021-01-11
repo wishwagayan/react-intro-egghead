@@ -24,18 +24,26 @@
       // };
 
       function App() {
-        const [state, setState] = React.useState({ eventCount: 0 });
+        const [state, setState] = React.useState("");
 
-        function handleClick(event) {
-          setState({ eventCount: state.eventCount + 2 });
-        }
+        const handelChange = (event) => {
+          setState(event.target.value);
+        };
         return (
           <div>
-            <label htmlFor="button"> Click Button</label>
-            <p>button clicked {state.eventCount}</p>
-            <button name="button" onClick={handleClick}>
-              click
-            </button>
+            <form>
+              {" "}
+              <label htmlFor="input-text" onChange={handelChange}>
+                Type Here
+              </label>
+              <input
+                type="text"
+                name="input-text"
+                onChange={handelChange}
+              ></input>
+              <button name="button">Reset</button>
+            </form>
+            <p>you are typed : {state}</p>
           </div>
         );
       }
