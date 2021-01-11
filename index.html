@@ -9,6 +9,8 @@
     <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://unpkg.com/react-error-boundary@1.2.5/dist/umd/react-error-boundary.js"></script>
+
     <link rel="stylesheet" href="styles.css" />
   </head>
 
@@ -17,45 +19,50 @@
 
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
-      const App = () => {
-        const [userName, setUserName] = React.useState("");
+      const ErrorBoundary = ReactErrorBoundary.ErrorBoundary;
+      // class ErrorBoundary extends React.Component {
+      //   state = { error: null };
+      //   static getDerivedStateFromError(error) {
+      //     return { error };
+      //   }
+      //   render() {
+      //     const { error } = this.state;
+      //     if (error) {
+      //       return <this.props.FallbackComponent error={error} />;
+      //     }
 
-        const isLowerCaseUserName = userName === userName.toLowerCase();
+      //     return this.props.children;
+      //   }
+      // }
 
-        const errorMsg = isLowerCaseUserName
-          ? null
-          : "User name must be in lower cases";
-
-        function handleChange(event) {
-          setUserName(event.target.value.toLowerCase());
-        }
-        const handleSubmit = (event) => {
-          event.preventDefault();
-          return alert(
-            event.target.elements.userNameInput.value +
-              " " +
-              event.target.elements.passwordInput.value
-          );
-        };
+      function ErrorFallback(error) {
         return (
           <div>
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="userNameInput">User Name : </label>
-              <input
-                type="text"
-                id="userNameInput"
-                onChange={handleChange}
-                value={userName}
-              ></input>
-              <br />
-              <label htmlFor="passwordInput">Enter Password : </label>
-              <input type="password" id="passwordInput" />
-
-              <button type="Submit">Submit</button>
-            </form>
+            <p>Something went wrong:</p>
+            <pre>{error.message}</pre>
           </div>
         );
-      };
+      }
+
+      function Bomb() {
+        throw new Error("💥 CABOOM 💥");
+      }
+
+      function App() {
+        const [explode, setExplode] = React.useState(false);
+        return (
+          <div>
+            <div>
+              <button onClick={() => setExplode(true)}>💣</button>
+            </div>
+            <div>
+              <ErrorBoundary FallbackComponent={ErrorFallback}>
+                {explode ? <Bomb /> : "Push the button Max!"}
+              </ErrorBoundary>
+            </div>
+          </div>
+        );
+      }
       function renderApp() {
         ReactDOM.render(<App />, document.getElementById("root"));
       }
