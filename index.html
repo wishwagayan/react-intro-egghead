@@ -18,6 +18,17 @@
     <!-- hear we changed type to text/babel -->
     <script type="text/babel">
       const App = () => {
+        const [userName, setUserName] = React.useState("");
+
+        const isLowerCaseUserName = userName === userName.toLowerCase();
+
+        const errorMsg = isLowerCaseUserName
+          ? null
+          : "User name must be in lower cases";
+
+        function handleChange(event) {
+          setUserName(event.target.value);
+        }
         const handleSubmit = (event) => {
           event.preventDefault();
           return alert(
@@ -30,10 +41,16 @@
           <div>
             <form onSubmit={handleSubmit}>
               <label htmlFor="userNameInput">User Name : </label>
-              <input type="text" id="userNameInput"></input>
+              <input
+                type="text"
+                id="userNameInput"
+                onChange={handleChange}
+              ></input>
               <br />
               <label htmlFor="passwordInput">Enter Password : </label>
               <input type="password" id="passwordInput" />
+              <div style={{ color: "red" }}>{errorMsg}</div>
+              {/* disable button boolean */}
               <button type="Submit">Submit</button>
             </form>
           </div>
