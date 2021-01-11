@@ -25,11 +25,13 @@
 
       function App() {
         const [name, setName] = React.useState(
-          window.localStorage.getItem("name") || ""
+          () => window.localStorage.getItem("name") || ""
         );
+
         React.useEffect(() => {
+          console.log("use effect rendered");
           window.localStorage.setItem("name", name);
-        });
+        }, ["name"]);
         const handelChange = (event) => {
           setName(event.target.value);
         };
