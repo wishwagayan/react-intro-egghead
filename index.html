@@ -22,16 +22,21 @@
       //   eventCount: 0,
       //   userName: "",
       // };
-
-      function App() {
-        const [name, setName] = React.useState(
-          () => window.localStorage.getItem("name") || ""
+      function localStrageFunction(key, defaultValue = "") {
+        const [state, setState] = React.useState(
+          () => window.localStorage.getItem("name") || defaultValue
         );
 
         React.useEffect(() => {
           console.log("use effect rendered");
-          window.localStorage.setItem("name", name);
-        }, ["name"]);
+          window.localStorage.setItem(key, state);
+        }, [state]);
+
+        return [state, setState];
+      }
+
+      function App() {
+        const [name, setName] = localStrageFunction("name", "");
         const handelChange = (event) => {
           setName(event.target.value);
         };
