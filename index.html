@@ -24,15 +24,16 @@
       // };
 
       function App() {
-        const [state, setState] = React.useState("");
-        const [state2, setState2] = React.useState("");
-
+        const [name, setName] = React.useState(
+          window.localStorage.getItem("name") || ""
+        );
+        React.useEffect(() => {
+          window.localStorage.setItem("name", name);
+        });
         const handelChange = (event) => {
-          setState(event.target.value);
+          setName(event.target.value);
         };
-        const handelChange2 = (event) => {
-          setState2(event.target.value);
-        };
+
         return (
           <div>
             <form>
@@ -42,21 +43,11 @@
                 type="text"
                 name="input-text"
                 onChange={handelChange}
+                value={name}
               ></input>
               <button name="button">Reset</button>
             </form>
-            <p>you are typed : {state}</p>
-            <form>
-              {" "}
-              <label htmlFor="input-text">Type Here</label>
-              <input
-                type="text"
-                name="input-text"
-                onChange={handelChange2}
-              ></input>
-              <button name="button">Reset</button>
-            </form>
-            <p>you are typed : {state2}</p>
+            <p>you are typed : {name}</p>
           </div>
         );
       }
